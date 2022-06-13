@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Registration</title>
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+</head>
+<body>
+
+<!-- create navigation bar (header)-->
+
+<nav class="navbar navbar-expand-lg bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">Navbar</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="nav-link active" aria-current="page" href="#">Home</a>
+                <a class="nav-link" href="#" th:href="@{/registration/signup}">Register</a>
+                <a class="nav-link" href="#" th:href="@{/logout}">Logout</a>
+            </div>
+        </div>
+    </div>
+</nav>
+<!-- html form-->
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <!--success message-->
+            <div th:if="${param.success}">
+                <div class="alert alert-info">You have successfully registered to our awesome app!</div>
+            </div>
+            <div th:if="${param.failure}">
+                <div class="alert alert-danger">failed to registered in our awesome app!</div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+
+    <h1>Registration Form</h1>
+
+    <form th:action="@{/registration/signup1}" th:object="${user}" method="post">
+        <p>First Name : <input type="text" th:field="*{firstName}" required autofocus="autofocus"/></p>
+        <p>Last Name : <input type="text" th:field="*{lastName}" required autofocus="autofocus" /></p>
+        <p>Email : <input type="text" th:field="*{email}" required autofocus="autofocus"/></p>
+        <p>Password : <input type="password" th:field="*{password}" required autofocus="autofocus"/></p>
+        <p><input type="submit" value="Submit"/> <input type="reset"  value="Reset" /></p>
+        <p> Already registered ? <a th:href="@{/login}">Login here</a></p>
+    </form>
+
+</div>
+
+
+</body>
+</html>
